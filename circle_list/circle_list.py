@@ -1,8 +1,8 @@
 # Circle Sine Wave
 # nach Peter Farrell: »Math Adventures with Python« p110ff.
 
-R1 = 100   # radius big circle
-R2 = 5     # radius small circle
+R1 = 100   # Radius großer Kreis
+R2 = 5     # Radius kleine Kreise
 
 t = 0      # Zeit-Variable
 circle_list = []
@@ -27,7 +27,7 @@ def draw():
     circle_list = [y] + circle_list[:199]
     no_stroke()
     fill(0, 255, 0, 150)         # sattes grün – leichte Transparenz)
-    # Schleife über die Liste, u, den Trail zu zeichnen
+    # Schleife über die Liste, um den Trail zu zeichnen
     for i, c in enumerate(circle_list):
         circle(200 + i, c, R2)
     
