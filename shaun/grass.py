@@ -6,13 +6,16 @@ class Grass:
     
     def __init__(self, x, y, sz):
         self.pos = PVector(x, y)
-        self.energy = 5 # Energy from eating this patch
+        self.energy = 3    # Energy from eating this patch
         self.eaten = False # Hasn't been eaten yet
-        self.sz = sz # Patch size
+        self.sz = sz       # Patch size
     
     def update(self):
         if self.eaten:
-            py5.fill(s.BROWN)
+            if py5.random(100) < 5:
+                self.eaten = False
+            else:
+                py5.fill(s.BROWN)
         else:
             py5.fill(s.GREEN)
         

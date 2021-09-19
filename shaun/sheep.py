@@ -4,10 +4,11 @@ import py5
 
 class Sheep:
     
-    def __init__ (self, x, y):
+    def __init__ (self, x, y, col):
         self.pos = PVector(x, y)
         self.sz = 10 # Size
-        self.energy = 200 # Energy level
+        self.energy = 20 # Energy level
+        self.col = col
         
     def update(self):
         move = 10
@@ -28,5 +29,5 @@ class Sheep:
         
     
     def show(self):
-        py5.fill(s.WHITE)
+        py5.fill(self.col)
         py5.circle(self.pos.x, self.pos.y, self.sz)

@@ -6,6 +6,7 @@ import settings as s
 
 sheeps = [] # List to store sheeps
 grasses = [] # List to store grass patches
+colors = [s.WHITE, s.RED, s.YELLOW, s.PURPLE]
 
 
 def setup():
@@ -14,7 +15,7 @@ def setup():
     row_of_grass = height/s.patch_size
     # Initialize a list with sheeps
     for _ in range(s.NO_SHEEPS):
-        sheeps.append(Sheep(random(width), random(height)))
+        sheeps.append(Sheep(random(width), random(height), random_choice(colors)))
     # Create the grass
     for x in range(0, width, s.patch_size):
         for y in range(0, height, s.patch_size):
@@ -35,4 +36,8 @@ def draw():
             grass.eaten = True
         if sheep.energy <= 0:
             sheeps.remove(sheep)
+        if sheep.energy >= 50:
+            sheep.energy -= 30  # Giving birth takes energy
+            # Add a new sheep to the list
+            sheeps.append(Sheep(sheep.pos.x, sheep.pos.y, sheep.col))
         sheep.show()
