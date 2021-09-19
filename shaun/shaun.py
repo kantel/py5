@@ -6,7 +6,7 @@ import settings as s
 
 sheeps = [] # List to store sheeps
 grasses = [] # List to store grass patches
-colors = [s.WHITE, s.RED, s.YELLOW, s.BLUE]
+colors = [s.WHITE, s.RED, s.BLUE, s.YELLOW]
 
 
 def setup():
@@ -41,4 +41,6 @@ def draw():
             sheep.energy -= 30  # Giving birth takes energy
             # Add a new sheep to the list
             sheeps.append(Sheep(sheep.pos.x, sheep.pos.y, sheep.col))
+            
         sheep.show()
+        # print("Anzahl der Schafe: " + str(len(sheeps)))

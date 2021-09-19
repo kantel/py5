@@ -12,8 +12,8 @@ class Grass:
     
     def update(self):
         if self.eaten:
-            if py5.random(200) < 5:
-                self.eaten = False
+            if py5.random_int(250) < 5:
+                self.eaten = False  # Regeneration
             else:
                 py5.fill(s.BROWN)
         else:

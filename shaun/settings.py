@@ -5,7 +5,7 @@ import py5
 
 WIDTH = 640
 HEIGHT = 480
-NO_SHEEPS = 20
+NO_SHEEPS = 40
 
 # Colors
 WHITE = py5.color(255)
