@@ -6,7 +6,7 @@ import settings as s
 
 sheeps = [] # List to store sheeps
 grasses = [] # List to store grass patches
-colors = [s.WHITE, s.RED, s.YELLOW, s.PURPLE]
+colors = [s.WHITE, s.RED, s.YELLOW, s.BLUE]
 
 
 def setup():
@@ -15,7 +15,8 @@ def setup():
     row_of_grass = height/s.patch_size
     # Initialize a list with sheeps
     for _ in range(s.NO_SHEEPS):
-        sheeps.append(Sheep(random(width), random(height), random_choice(colors)))
+        sheeps.append(Sheep(random_int(50, width - 50),
+                            random_int(50, height - 50), random_choice(colors)))
     # Create the grass
     for x in range(0, width, s.patch_size):
         for y in range(0, height, s.patch_size):

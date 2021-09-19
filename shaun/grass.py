@@ -12,7 +12,7 @@ class Grass:
     
     def update(self):
         if self.eaten:
-            if py5.random(100) < 5:
+            if py5.random(200) < 5:
                 self.eaten = False
             else:
                 py5.fill(s.BROWN)

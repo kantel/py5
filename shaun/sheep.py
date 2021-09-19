@@ -7,14 +7,15 @@ class Sheep:
     def __init__ (self, x, y, col):
         self.pos = PVector(x, y)
         self.sz = 10 # Size
+        self.move = 10
         self.energy = 20 # Energy level
         self.col = col
         
     def update(self):
-        move = 10
+        
         self.energy -= 1 # Walking costs energy
-        self.pos.x += py5.random(-move, move)
-        self.pos.y += py5.random(-move, move)
+        self.pos.x += py5.random(-self.move, self.move)
+        self.pos.y += py5.random(-self.move, self.move)
         self.check_boundaries()
         
     def check_boundaries(self):
