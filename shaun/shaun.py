@@ -13,6 +13,7 @@ def setup():
     size(s.WIDTH, s.HEIGHT)
     global row_of_grass
     row_of_grass = height/s.patch_size
+    frame_rate(s.FPS)
     # Initialize a list with sheeps
     for _ in range(s.NO_SHEEPS):
         sheeps.append(Sheep(random_int(50, width - 50),

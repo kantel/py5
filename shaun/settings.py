@@ -6,6 +6,7 @@ import py5
 WIDTH = 640
 HEIGHT = 480
 NO_SHEEPS = 40
+FPS = 5 # 60 for fast motion, 5 for slow motion
 
 # Colors
 WHITE = py5.color(255)
