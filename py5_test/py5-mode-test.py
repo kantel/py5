@@ -4,4 +4,5 @@ def setup():
     no_stroke()
 
 def draw():
+    background(255, 255, 255)
     circle(mouse_x, mouse_y, 10)

@@ -6,7 +6,7 @@ from pvector import PVector
 
 NO_BALLS = 40
 WIDTH = 640
-HEIGHT = 480
+HEIGHT = 400
 
 balls = [] # Empty list to put the balls in
 
@@ -42,6 +42,7 @@ class Ball:
 
 def setup():
     size(WIDTH, HEIGHT)
+    window_title("Bouncing Balls 🐍")
     for _ in range(NO_BALLS):
         balls.append(Ball(random(20, width - 20), random(20, height - 20)))
 
