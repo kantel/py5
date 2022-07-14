@@ -1,3 +1,7 @@
+# Rotating Squares
+# nach einem Sketch von Peter Farrell
+# Math Adventures with Python, San Francisco (No Starch Press) 2019, p87ff
+
 WIDTH = 600
 HEIGHT = 600
 
