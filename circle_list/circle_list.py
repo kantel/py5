@@ -9,6 +9,7 @@ circle_list = []
 
 def setup():
     size(600, 600)
+    window_title("Vom Kreis zur Sinus-Kurve")
 
 def draw():
     global t, circle_list
