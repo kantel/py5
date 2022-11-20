@@ -27,7 +27,6 @@ class Fish():
             self.img = self.imgr0
         elif self.dir == "lt":
             self.img = self.imgl0
-
         self.speed = speed*randint(1, 3)
         self.switch = 5
         self.timer = self.switch
