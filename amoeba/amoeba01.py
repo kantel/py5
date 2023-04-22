@@ -57,6 +57,7 @@ amoebas = []
 
 def setup():
   size(WIDTH, HEIGHT)
+  window_title("Amöben in der Petrischale")
   for _ in range(8):
     amoeba = Amoeba(randint(MAX_DIA2, width - MAX_DIA2),
                     randint(MAX_DIA2, height - MAX_DIA2),
