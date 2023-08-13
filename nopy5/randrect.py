@@ -20,8 +20,11 @@ def setup():
 def draw():
     background(233, 195, 91)
     for _ in range(NO_RECT):
-        c = random_choice(colors)
-        fill(c[0][0], c[0][1], c[0][2], a)
+        # c = random_choice(colors)
+        c = color(c, a)
+        print(c)
+        # fill(color(c))
+        # fill(c[0][0], c[0][1], c[0][2], a)
         rect_w = random_int(10, 80)
         rect_h = random_int(10, 80)
         rect(random_int(rect_w, width - rect_w), random_int(rect_h, height - rect_h),
