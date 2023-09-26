@@ -5,23 +5,23 @@
 WIN_WIDTH, WIN_HEIGHT = 740, 480
 
 # Plot-Parameter
-plot_x1 = 120                    # Start Fensterbreite rechts
-plot_x2 = WIN_WIDTH - 80         # Ende Fensterbreite links
-label_x = 50
+plot_x1 = 140                    # Start Fensterbreite rechts
+plot_x2 = WIN_WIDTH - 40         # Ende Fensterbreite links
+label_x = 10
 plot_y1 = 60                     # Start Fensterhöhe oben
-plot_y2 = WIN_HEIGHT - plot_y1   # Ende Fensterhöhe unten
-label_y = WIN_HEIGHT - 25
+plot_y2 = WIN_HEIGHT - 80        # Ende Fensterhöhe unten
+label_y = WIN_HEIGHT - 35
 plot_title = "Dynamik eines nichtlinearen Mini-Weltmodells"
 
 ## Sonstige Parameter
-final = 200    # Simulationszeitraum (Jahre)
+final = 500    # Simulationszeitraum (Jahre)
 dt = 0.2       # Schrittweite
 
 ## Funktionsabhängige Konstanten
-x_min = 0
-x_max = final
-y_min = 0
-y_max = 10
+x_min = 0                        # Startwert x
+x_max = final                    # Maximalwert x
+y_min = 0                        # Startwert f(x)
+y_max = 16                       # Maximalwert f(x)
 stepsize_x = x_max//10           # Ticks auf der x-Achse
 stepsize_y = -2                  # Ticks auf der y-Achse
 
@@ -29,10 +29,12 @@ stepsize_y = -2                  # Ticks auf der y-Achse
 # Farben
 bg_color = color(234, 218, 184)           # Packpapier
 text_color = color(0, 150, 0)             # Grün
+text_color_2 = color(20, 20, 20)          # Schwarz
 plot_window_color = color(250, 250, 250)  # Weiß
 grid_color = color(0, 250, 250)           # Blau-Grau
 line_color_1 = color(250, 0, 0)           # Rot
 line_color_2 = color(0, 0, 250)           # Blau
+line_color_3 = color(235, 146, 52)        # Orange
 
 
 # Paramteter des Weltmodells
@@ -48,9 +50,14 @@ e = 0.02       # Wichtungsfaktor Schadstoffeintrag
 ## Konsum
 c = 0.05       # Wachstumsrate Konsum
 
-## Eingriffsfaktoren
-u = 1.0        # Wirkung Umweltqualität auf Bevölkerungsentwicklung
-f = 0.1        # Kapazitätsfaktor Sättigung Konsum
+## Eingriffsfaktoren -- Hier kann geändert werden ###################
+u = 1.0        # Wirkung Umweltqualität auf Bevölkerungsentwicklung #
+f = 0.03       # Kapazitätsfaktor Sättigung Konsum                  #
+#####################################################################
+
+volk_array = []
+last_array = []
+kons_array = []
 
 def settings():
     size(WIN_WIDTH, WIN_HEIGHT)
@@ -73,6 +80,25 @@ def draw():
     
     if t >= final:
         print(volk, last, kons)
+        x = x_min
+        i = 0
+        while i < len(volk_array):
+            stroke(line_color_1)
+            x_v = remap(x, x_min, x_max, plot_x1, plot_x2)
+            y_v = remap(volk_array[i], y_min, y_max, plot_y2, plot_y1)
+            circle(x_v, y_v, 2)
+            stroke(line_color_2)
+            x_v = remap(x, x_min, x_max, plot_x1, plot_x2)
+            y_v = remap(last_array[i], y_min, y_max, plot_y2, plot_y1)
+            circle(x_v, y_v, 2)
+            stroke(line_color_3)
+            x_v = remap(x, x_min, x_max, plot_x1, plot_x2)
+            y_v = remap(kons_array[i], y_min, y_max, plot_y2, plot_y1)
+            circle(x_v, y_v, 2)
+            x += dt
+            i += 1
+                                
+        stroke(text_color)                       
         print("I did it, Babe")
         no_loop()
     
@@ -90,22 +116,34 @@ def calc_world_model():
     volk = volk + volk_rate*dt
     last = last + last_rate*dt
     kons = kons + kons_rate*dt
+    volk_array.append(volk)
+    last_array.append(last)
+    kons_array.append(kons)
     t += dt
-    # print(t)
-
+ 
 def draw_plot_window():
     # Den Plot in einem weißen Kasten zeichnen
     fill(plot_window_color)
     rect_mode(CORNERS)
     no_stroke()
     rect(plot_x1, plot_y1, plot_x2, plot_y2)
+    # Kasten für y-Label
+    stroke(grid_color)
+    stroke_weight(1)
+    rect(label_x - 5, (plot_y1 + plot_y2)//2 - 25, label_x + 100, (plot_y1 + plot_y2)//2 + 30)
+    no_stroke()
+    # Kasten für x-Label
+    stroke(grid_color)
+    stroke_weight(1)
+    rect(plot_x1, label_y - 15, plot_x1 + 450, label_y + 15)
+    no_stroke()
     # Titel des Plots zeichnen
     fill(text_color)
     text_size(20)
     text_align(LEFT)
     text(plot_title, plot_x1, plot_y1 - 10)
     draw_grid()
-    # draw_axis_labels()
+    draw_axis_labels()
     
 def draw_grid():
     # Zeichne Gitter und Label
@@ -134,4 +172,19 @@ def draw_grid():
         stroke(grid_color)
         line(plot_x1, y, plot_x2, y)
         
-    
+def draw_axis_labels():
+    text_size(13)
+    text_leading(15)
+    # y-Achse
+    text_align(LEFT, CENTER)
+    fill(line_color_1)
+    text("Bevölkerung", label_x, (plot_y1 + plot_y2)//2 - 20)
+    fill(line_color_2)
+    text("Umweltbelastung", label_x, (plot_y1 + plot_y2)//2)
+    fill(line_color_3)
+    text("Konsum", label_x, (plot_y1 + plot_y2)//2 + 20)
+    # x-Achse
+    fill(text_color_2)
+    text_size(13)
+    text("Eingriffsparameter: Umwelt-Qualität: " + str(u) + ", Konsum-Faktor: " + str(f), plot_x1 + 5, label_y)
+    fill(text_color)
