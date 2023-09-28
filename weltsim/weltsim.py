@@ -113,6 +113,7 @@ def calc_world_model():
         abbau = a*last*qual
     last_rate = e*kons*volk - abbau
     kons_rate = c*kons*last*(1 - (kons*last*f))
+    # Numerische Lösung nach Euler
     volk = volk + volk_rate*dt
     last = last + last_rate*dt
     kons = kons + kons_rate*dt
