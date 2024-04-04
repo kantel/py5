@@ -1,8 +1,8 @@
 # PY5 IMPORTED MODE CODE
 # Shaun Settings
 
-window_width =  800     # 25x32
-window_height = 640     # 20x32
+window_width =  640     # 25x32
+window_height = 400     # 20x32
 patchsize = 32          # Zellgröße
 cols = window_width//patchsize
 rows = window_height//patchsize
