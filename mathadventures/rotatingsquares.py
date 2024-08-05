@@ -13,7 +13,7 @@ def draw():
     py5.fill("#f05025")
     py5.translate(py5.width/2, py5.height/2)
     py5.rotate(math.radians(t))
-    for i in range(12):
+    for _ in range(12):
         py5.rect(200, 0, 50, 50)
         py5.rotate(math.radians(360/12))
     t += 1
