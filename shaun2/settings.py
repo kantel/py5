@@ -1,16 +1,17 @@
 # PY5 IMPORTED MODE CODE
 # Shaun Settings
+import py5
+patch_size = 32          # Zellgröße
+window_width =  32*patch_size
+window_height = 18*patch_size
 
-window_width =  640     # 25x32
-window_height = 400     # 20x32
-patchsize = 32          # Zellgröße
-cols = window_width//patchsize
-rows = window_height//patchsize
+cols = window_width//patch_size
+rows = window_height//patch_size
 
-no_sheeps = 15          # Anzahl Schafe
+no_sheeps = 100          # Anzahl Schafe
 
 # Patchfarben
-BROWN = color(102, 51, 0)
-GREEN = color(0, 102, 0)
+BROWN = py5.color(102, 51, 0)
+GREEN = py5.color(0, 102, 0)
 
 
